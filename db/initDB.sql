@@ -38,9 +38,9 @@ CREATE TABLE movies
 
 CREATE TABLE actor_movies
 (
-  actor_id int not null ,
+  actor_id int not null,
   movie_id int not null,
-  primary key (actor_id,movie_id),
+  primary key (actor_id, movie_id),
   FOREIGN KEY (actor_id) references actors,
   FOREIGN KEY (movie_id) references movies
 );
