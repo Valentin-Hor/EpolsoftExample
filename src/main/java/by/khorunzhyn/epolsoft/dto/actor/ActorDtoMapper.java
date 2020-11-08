@@ -36,7 +36,7 @@ public class ActorDtoMapper extends BaseDtoMapper<Actor, ActorDto> {
         dto.setAddress(addressDtoMapper.mapEntityToDto(entity.getAddress()));
         List<Movie> entityList = entity.getMovies();
         List<MovieDto> dtoList = new ArrayList<>();
-        for (Movie movie: entityList) {
+        for (Movie movie : entityList) {
             dtoList.add(movieDtoMapper.mapEntityToDto(movie));
         }
         dto.setMovieList(dtoList);
@@ -57,7 +57,7 @@ public class ActorDtoMapper extends BaseDtoMapper<Actor, ActorDto> {
         entity.setAddress(addressDtoMapper.mapDtoToEntity(dto.getAddress()));
         List<MovieDto> dtoList = dto.getMovieList();
         List<Movie> entityList = new ArrayList<>();
-        for (MovieDto movieDto: dtoList) {
+        for (MovieDto movieDto : dtoList) {
             entityList.add(movieDtoMapper.mapDtoToEntity(movieDto));
         }
         entity.setMovies(entityList);

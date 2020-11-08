@@ -52,10 +52,10 @@ public class AddressService extends BaseCsvServiceImpl<Address, AddressRepositor
     @Transactional
     protected List<Address> fillAndSave(CSVParser parser) {
         List<Address> savedEntityList = new ArrayList<>();
-        if (parser!=null){
+        if (parser != null) {
 
             logger.info("Save Address from csv to db");
-            for (CSVRecord csvRecord: parser) {
+            for (CSVRecord csvRecord : parser) {
                 Address address = new Address();
                 address.setCountry(csvRecord.get("country"));
                 address.setCity(csvRecord.get("city"));

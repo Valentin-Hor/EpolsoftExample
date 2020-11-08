@@ -8,7 +8,7 @@ import org.apache.commons.csv.CSVParser;
 import java.util.List;
 
 public abstract class BaseCsvServiceImpl<E extends BaseEntity, R extends BaseRepository<E>>
-        extends BaseServiceImpl<E,R>
+        extends BaseServiceImpl<E, R>
         implements BaseCsvService<E> {
 
     protected abstract CommonCsvService getCommonCsvService();

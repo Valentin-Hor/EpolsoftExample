@@ -37,6 +37,5 @@ public interface BaseService<T extends BaseEntity> {
     void delete(T entity);
 
 
-
 }
 
