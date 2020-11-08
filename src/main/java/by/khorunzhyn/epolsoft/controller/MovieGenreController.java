@@ -22,17 +22,17 @@ public class MovieGenreController {
     private MovieGenreDtoMapper dtoMapper;
 
     @GetMapping("/moviegenres")
-    public List<MovieGenreDto> getAll(){
+    public List<MovieGenreDto> getAll() {
         List<MovieGenre> entityList = service.findAll();
         List<MovieGenreDto> dtoList = new ArrayList<>();
-        for (MovieGenre entity: entityList){
+        for (MovieGenre entity : entityList) {
             dtoList.add(dtoMapper.mapEntityToDto(entity));
         }
         return dtoList;
     }
 
-    @GetMapping("/moviegenres/id")
-    public MovieGenreDto get(@PathVariable("id") Long id){
+    @GetMapping("/moviegenres/{id}")
+    public MovieGenreDto get(@PathVariable("id") Long id) {
         MovieGenre entity = service.findOne(id).orElse(null);
         return dtoMapper.mapEntityToDto(entity);
     }

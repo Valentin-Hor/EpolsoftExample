@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name="movies")
-public class Movie extends BaseEntity implements Serializable {
+@Table(name = "movie")
+public class Movie extends BaseEntity {
 
     @Column(name = "title")
     private String title;

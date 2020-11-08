@@ -2,7 +2,7 @@ package by.khorunzhyn.epolsoft.dto;
 
 import by.khorunzhyn.epolsoft.entity.BaseEntity;
 
-public abstract class BaseDtoMapper<E extends BaseEntity,Dto extends BaseDto> {
+public abstract class BaseDtoMapper<E extends BaseEntity, Dto extends BaseDto> {
 
     protected abstract Dto createDto();
 

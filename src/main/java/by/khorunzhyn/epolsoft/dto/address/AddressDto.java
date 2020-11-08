@@ -1,28 +1,14 @@
-package by.khorunzhyn.epolsoft.entity;
+package by.khorunzhyn.epolsoft.dto.address;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import by.khorunzhyn.epolsoft.dto.BaseDto;
 
-@Entity
-@Table(name = "address")
-public class Address extends BaseEntity {
+public class AddressDto extends BaseDto {
 
-    @Column(name = "country")
     private String country;
-
-    @Column(name = "city")
     private String city;
-
-    @Column(name = "street")
     private String street;
-
-    @Column(name = "house_number")
     private int houseNumber;
 
-    @OneToOne(mappedBy = "address")
-    private Actor actor;
 
     public String getCountry() {
         return country;
@@ -54,13 +40,5 @@ public class Address extends BaseEntity {
 
     public void setHouseNumber(int houseNumber) {
         this.houseNumber = houseNumber;
-    }
-
-    public Actor getActor() {
-        return actor;
-    }
-
-    public void setActor(Actor actor) {
-        this.actor = actor;
     }
 }

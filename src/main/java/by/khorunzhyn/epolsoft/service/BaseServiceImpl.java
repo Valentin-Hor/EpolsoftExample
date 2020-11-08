@@ -2,13 +2,15 @@ package by.khorunzhyn.epolsoft.service;
 
 import by.khorunzhyn.epolsoft.dao.BaseRepository;
 import by.khorunzhyn.epolsoft.entity.BaseEntity;
+import by.khorunzhyn.epolsoft.service.csv.CommonCsvService;
+import org.apache.commons.csv.CSVParser;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
-public abstract class BaseServiceImpl<E extends BaseEntity,R extends BaseRepository<E>> implements BaseService<E> {
+public abstract class BaseServiceImpl<E extends BaseEntity, R extends BaseRepository<E>> implements BaseService<E> {
 
     protected abstract R getRepository();
 
@@ -23,14 +25,13 @@ public abstract class BaseServiceImpl<E extends BaseEntity,R extends BaseReposit
     }
 
     @Override
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional
     public Optional<E> findOne(Long id) {
         return getRepository().findById(id);
     }
 
-
     @Override
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional
     public List<E> findAllById(List<Long> ids) {
         return getRepository().findAllById(ids);
     }
@@ -41,7 +42,7 @@ public abstract class BaseServiceImpl<E extends BaseEntity,R extends BaseReposit
     }
 
     @Override
-    @org.springframework.transaction.annotation.Transactional(readOnly = true)
+    @Transactional
     public List<E> findAll() {
         return getRepository().findAll();
     }

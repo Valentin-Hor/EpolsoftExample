@@ -6,19 +6,20 @@ import by.khorunzhyn.epolsoft.data.Gender;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="actors")
-public class Actor extends BaseEntity implements Serializable {
+@Table(name = "actor")
+public class Actor extends BaseEntity {
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name="date_of_birth")
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @Column(name = "gender")
@@ -26,15 +27,15 @@ public class Actor extends BaseEntity implements Serializable {
     private Gender gender;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name="actor_movies",
-    joinColumns = @JoinColumn(name = "actor_id"),
+    @JoinTable(name = "actor_movie",
+            joinColumns = @JoinColumn(name = "actor_id"),
             inverseJoinColumns = @JoinColumn(name = "movie_id")
     )
-    private Set<Movie> movies;
+    private List<Movie> movies;
 
 
     public String getFirstName() {
@@ -77,11 +78,11 @@ public class Actor extends BaseEntity implements Serializable {
         this.address = address;
     }
 
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
 }

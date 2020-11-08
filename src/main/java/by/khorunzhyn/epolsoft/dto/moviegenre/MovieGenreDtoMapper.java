@@ -5,7 +5,7 @@ import by.khorunzhyn.epolsoft.entity.MovieGenre;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MovieGenreDtoMapper extends BaseDtoMapper<MovieGenre,MovieGenreDto> {
+public class MovieGenreDtoMapper extends BaseDtoMapper<MovieGenre, MovieGenreDto> {
 
 
     @Override
