@@ -26,4 +26,4 @@ This is Spring Boot Application works with the "Actors" database
 3. Run Application.java and after that:
 + WriteDataFromCsvService will fill database with MovieGenre and Movie entity from prepared test file. Every 5 minutes 5 records from prepared test file will fill the database with Actor entity.
 + UpdateActorService every 2 minutes invert Actors firstname and lastname in next 3 records.
-+ Read log file.
++ If you want to download log file, than use GET request(localhost:8080/files/logging.log)
