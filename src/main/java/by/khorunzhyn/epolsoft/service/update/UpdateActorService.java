@@ -27,20 +27,22 @@ public class UpdateActorService {
     @Autowired
     private ActorService actorService;
 
-    @Scheduled(initialDelay = 1000, fixedDelay = 2000)
+    @Scheduled(initialDelay = 15000, fixedDelay = 2000)
     public void updateActorsFromDB() {
         List<Actor> actorList = actorService.findAll();
         Counter importCounter = counterService.getByTitle(ACTOR_COUNTER_TITLE);
 
         Long offset = importCounter.getCounterOffset();
         Long count = importCounter.getCount();
-        logger.info("Update Actor records from db: count = {}, offset = {} ", count, offset);
+        if(offset<actorList.size()) {
+            logger.info("Update Actor records from db with Id from {} to {} ", offset + 1, offset + count);
+        }
         for (int i = 1; i <= count; i++) {
             Optional<Actor> actorOptional = actorService.findOne(offset + i);
 
             if (actorOptional.isPresent()) {
 
-                logger.info("Update Actor with Id = {}", offset + i);
+                logger.info("Swap the firstName with the lastName in Actor's record with Id = {}", offset + i);
                 Actor foundActor = actorOptional.get();
                 String temp = foundActor.getFirstName();
                 foundActor.setFirstName(foundActor.getLastName());

@@ -79,7 +79,7 @@ public class ActorService extends BaseCsvServiceImpl<Actor, ActorRepository> {
                 Long offset = importCounter.getCounterOffset();
                 Long count = importCounter.getCount();
                 if (offset < recordList.size()) {
-                    logger.info("Save Actors from csv to db: count = {}, offset = {}", count, offset);
+                    logger.info("Save Actor records from csv to db with Id  from {} to {}", offset + 1, offset + count);
                     savedEntityList = saveActors(recordList, count, offset);
                     changeCounter(importCounter, offset + count);
                 }

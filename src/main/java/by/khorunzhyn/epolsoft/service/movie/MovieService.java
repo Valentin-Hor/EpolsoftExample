@@ -64,7 +64,7 @@ public class MovieService extends BaseCsvServiceImpl<Movie, MovieRepository> {
 
         if (parser != null) {
 
-            logger.info("Save Movie from csv to db");
+//            logger.info("Save Movie from csv to db");
             for (CSVRecord csvRecord : parser) {
                 Movie movie = new Movie();
                 movie.setTitle(csvRecord.get("title"));

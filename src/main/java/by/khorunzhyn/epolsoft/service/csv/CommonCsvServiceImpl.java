@@ -25,13 +25,11 @@ class CommonCsvServiceImpl implements CommonCsvService {
             try {
                 Reader reader = new FileReader(file);
 
-                logger.info("Start parsing file: {}", file.getName());
                 CSVParser parser = CSVParser.parse(reader, CSVFormat.DEFAULT
                         .withDelimiter('/')
                         .withFirstRecordAsHeader()
                         .withIgnoreHeaderCase()
                         .withTrim());
-                logger.info("Finish parsing file: {}", file.getName());
 
                 return parser;
             } catch (FileNotFoundException e) {

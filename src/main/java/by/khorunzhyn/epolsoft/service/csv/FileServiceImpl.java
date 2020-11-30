@@ -22,7 +22,7 @@ class FileServiceImpl implements FileService {
     @Override
     public File getFile(String fileUrl) {
 
-        logger.info("Loading resource: {}", fileUrl);
+//        logger.info("Loading resource: {}", fileUrl);
         Resource csv = resourceLoader.getResource(fileUrl);
 
         try {
