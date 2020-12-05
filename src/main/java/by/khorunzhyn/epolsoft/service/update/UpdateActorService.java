@@ -27,7 +27,7 @@ public class UpdateActorService {
     @Autowired
     private ActorService actorService;
 
-    @Scheduled(initialDelay = 15000, fixedDelay = 2000)
+    @Scheduled(initialDelay = 20000, fixedDelay = 100)
     public void updateActorsFromDB() {
         List<Actor> actorList = actorService.findAll();
         Counter importCounter = counterService.getByTitle(ACTOR_COUNTER_TITLE);

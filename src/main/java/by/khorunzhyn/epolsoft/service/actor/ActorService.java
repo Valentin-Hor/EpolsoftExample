@@ -93,32 +93,38 @@ public class ActorService extends BaseCsvServiceImpl<Actor, ActorRepository> {
 
     private List<Actor> saveActors(List<CSVRecord> recordList, Long count, Long offset) {
         List<Actor> savedEntityList = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             CSVRecord csvRecord = recordList.get((int) (offset + i));
-            Actor actor = new Actor();
-            actor.setFirstName(csvRecord.get("first_name"));
-            actor.setLastName(csvRecord.get("last_name"));
-            actor.setDateOfBirth(parserHelper.getLocalDate(csvRecord.get("date_of_birth")));
-            actor.setGender(Gender.valueOf(csvRecord.get("gender")));
+            try {
+                Actor actor = new Actor();
+                actor.setFirstName(csvRecord.get("first_name"));
+                actor.setLastName(csvRecord.get("last_name"));
+                actor.setDateOfBirth(parserHelper.getLocalDate(csvRecord.get("date_of_birth")));
+                actor.setGender(Gender.valueOf(csvRecord.get("gender")));
 
-            Address address = new Address();
-            address.setCountry(csvRecord.get("country"));
-            address.setCity(csvRecord.get("city"));
-            address.setStreet(csvRecord.get("street"));
-            address.setHouseNumber(Integer.parseInt(csvRecord.get("house_number")));
-            actor.setAddress(address);
+                Address address = new Address();
+                address.setCountry(csvRecord.get("country"));
+                address.setCity(csvRecord.get("city"));
+                address.setStreet(csvRecord.get("street"));
+                address.setHouseNumber(Integer.parseInt(csvRecord.get("house_number")));
+                actor.setAddress(address);
 
-            String movieListAsString = csvRecord.get("movies");
-            String[] movies = movieListAsString.split(",");
-            List<Movie> movieList = new ArrayList<>();
-            for (String movieTitle : movies) {
-                Movie movie = movieService.getMovieByTitle(movieTitle);
-                movieList.add(movie);
+                String movieListAsString = csvRecord.get("movies");
+                String[] movies = movieListAsString.split(",");
+                List<Movie> movieList = new ArrayList<>();
+                for (String movieTitle : movies) {
+                    Movie movie = movieService.getMovieByTitle(movieTitle);
+                    movieList.add(movie);
+                }
+                actor.setMovies(movieList);
+
+                savedEntityList.add(save(actor));
+
+            } catch (Exception e) {
+                logger.error("Record №" +csvRecord.getRecordNumber() + " with VALUE = " + csvRecord.toMap().toString() + " is incorrect");
             }
 
-            actor.setMovies(movieList);
-
-            savedEntityList.add(save(actor));
         }
         return savedEntityList;
     }

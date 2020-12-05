@@ -28,7 +28,7 @@ public class WriteDataFromCsvService {
 
     }
 
-    @Scheduled(initialDelay = 2000, fixedDelay = 2000)
+    @Scheduled(initialDelay = 2000, fixedDelay = 500)
     public void fillDbWithActor() {
         actorService.importFromCsv();
     }

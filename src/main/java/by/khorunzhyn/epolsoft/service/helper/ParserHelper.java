@@ -21,8 +21,8 @@ public class ParserHelper {
             return LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN));
         } catch (DateTimeParseException e) {
             logger.error("Can not parse to LocalDate value = \"" + dateString + "\"");
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }
 
