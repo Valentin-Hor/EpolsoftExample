@@ -54,12 +54,16 @@ public class MovieGenreService extends BaseCsvServiceImpl<MovieGenre, MovieGenre
 
         if (parser != null) {
 
-//            logger.info("Save MovieGenre from csv to db");
-            for (CSVRecord csvRecord : parser) {
-                MovieGenre movieGenre = new MovieGenre();
-                movieGenre.setTitle(csvRecord.get("title"));
 
-                savedEntityList.add(save(movieGenre));
+            for (CSVRecord csvRecord : parser) {
+                try {
+                    MovieGenre movieGenre = new MovieGenre();
+                    movieGenre.setTitle(csvRecord.get("title"));
+
+                    savedEntityList.add(save(movieGenre));
+                }catch (Exception e){
+                    logger.error("Record №" + csvRecord.getRecordNumber() + " with VALUE = " + csvRecord.toMap().toString() + " is incorrect");
+                }
             }
         }
         return savedEntityList;

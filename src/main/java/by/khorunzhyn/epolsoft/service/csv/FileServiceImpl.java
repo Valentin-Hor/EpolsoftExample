@@ -8,7 +8,6 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.IOException;
 
 
 @Service
@@ -27,8 +26,8 @@ class FileServiceImpl implements FileService {
 
         try {
             return csv.getFile();
-        } catch (IOException e) {
-            logger.error("Failed getting file", e);
+        } catch (Exception e) {
+            logger.error("Failed getting file");
         }
 
         return null;

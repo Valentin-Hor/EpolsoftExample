@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,8 +82,8 @@ public class ActorService extends BaseCsvServiceImpl<Actor, ActorRepository> {
                     savedEntityList = saveActors(recordList, count, offset);
                     changeCounter(importCounter, offset + count);
                 }
-            } catch (IOException e) {
-                logger.error("Failed get records from csv file", e);
+            } catch (Exception e) {
+                logger.error("Failed get records from csv file");
             }
 
         }

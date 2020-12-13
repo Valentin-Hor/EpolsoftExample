@@ -21,6 +21,7 @@ class CommonCsvServiceImpl implements CommonCsvService {
     public CSVParser getParser(String csvFileUrl) {
 
         File file = fileService.getFile(csvFileUrl);
+
         if (file != null) {
             try {
                 Reader reader = new FileReader(file);
@@ -33,9 +34,9 @@ class CommonCsvServiceImpl implements CommonCsvService {
 
                 return parser;
             } catch (FileNotFoundException e) {
-                logger.error("File not found: " + file.getName(), e);
-            } catch (IOException e) {
-                logger.error("Failed parsing file: " + file.getName(), e);
+                logger.error("File not found: " + file.getName());
+            } catch (Exception e) {
+                logger.error("Failed parsing file: " + file.getName());
             }
         }
         return null;
